@@ -1,0 +1,113 @@
+.root {
+  min-width: 320px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  background: #000000;
+}
+
+.page {
+  /* сглаживание текста */
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+
+  /* масштаб текста */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+
+  /* читаемость */
+  text-rendering: optimizeLegibility;
+
+  font-family: "Inter", Helvetica, sans-serif;
+  max-width: 880px;
+}
+
+.header {
+
+}
+
+.header__logo {
+
+}
+
+.profile {
+
+}
+
+.pofile__avatar {
+
+}
+
+.pofile__info {
+
+}
+
+.pofile__name {
+
+}
+
+.pofile__edit-button {
+
+}
+
+.pofile__description {
+
+}
+
+.pofile__add-button {
+
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup__container {
+max-width: 430px;
+max-height: 330px;
+background-color: #FFFFFF;
+box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+border-radius: 10px;
+position: fixed;
+top: 195px;
+left: 50%;
+}
+
+.popup__title {
+
+}
+
+.popup__input {
+
+}
+
+.popup__save-button {
+
+}
+
+.popup__exit-button {
+position: relative;
+  top: -80px;
+  right: -80px;
+}
+
+.popup__close {
+  
+}
+
+.cards {
+}
+.card {
+}
+.card__image {
+}
+.card__place {
+}
+.card__like {
+}
+.footer {
+}
+.footer__text {
+}
