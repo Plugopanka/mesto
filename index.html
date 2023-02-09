@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <script src="./scripts/script.js" defer></script>
+    <title>Document</title>
+  </head>
+  <body class="root">
+    <div class="page">
+      <header class="header">
+        <img
+          src="./images/header-logo.svg"
+          alt="Логотип Mesto Russia."
+          class="header__logo"
+        />
+      </header>
+
+      <section class="profile">
+        <img
+          src="./images/profile-selfie.jpg"
+          alt="Аватар владельца аккаунта."
+          class="pofile__avatar"
+        />
+        <div class="pofile__info">
+          <p class="pofile__name">Жак-Ив Кусто</p>
+          <button class="pofile__edit-button"></button>
+          <p class="pofile__description">Исследователь океана</p>
+        </div>
+        <button class="pofile__add-button"></button>
+      </section>
+
+      <section class="popup">
+        <div class="popup__container">
+          <h2 class="popup__title"></h2>
+          <input type="text" class="popup__input" />
+          <input type="text" class="popup__input" />
+          <button class="popup__save-button">Сохранить</button>
+          <button class="popup__exit-button">
+            <img
+              src="./images/popup-close.svg"
+              alt="Нажать крестик для выхода из формы."
+              class="popup__close"
+            />
+          </button>
+        </div>
+        
+      </section>
+
+      <section class="cards">
+        <div class="card">
+          <img
+            src="./images/card-arkhyz.jpg"
+            alt="Каменный храм в кавказских горах."
+            class="card__image"
+          />
+          <p class="card__place">Архыз</p>
+          <img src="" alt="" class="card__like" />
+        </div>
+        <div class="card">
+          <img
+            src="./images/card-dmitrov.jpg"
+            alt="Дорога в Дмитров через деревни."
+            class="card__image"
+          />
+          <p class="card__place">Дмитров</p>
+          <img src="" alt="" class="card__like" />
+        </div>
+        <div class="card">
+          <img
+            src="./images/card-kazan.jpg"
+            alt="Архитектура казанских достопримечательностей."
+            class="card__image"
+          />
+          <p class="card__place">Казань</p>
+          <img src="" alt="" class="card__like" />
+        </div>
+        <div class="card">
+          <img
+            src="./images/card-kirovsk.jpg"
+            alt="Вид на Кировск с Большого Вудъявра."
+            class="card__image"
+          />
+          <p class="card__place">Кировск</p>
+          <img src="" alt="" class="card__like" />
+        </div>
+        <div class="card">
+          <img
+            src="./images/card-krasnoyarsk.jpg"
+            alt="Набережная вдоль Енисея."
+            class="card__image"
+          />
+          <p class="card__place">Красноярск</p>
+          <img src="" alt="" class="card__like" />
+        </div>
+        <div class="card">
+          <img
+            src="./images/card-petropavlovsk-kamchatskiy.jpg"
+            alt="Пейзаж города перед вулканом."
+            class="card__image"
+          />
+          <p class="card__place">Петропавловск-Камчатский</p>
+          <img src="" alt="" class="card__like" />
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="footer__text">© 2020 Mesto Russia</p>
+      </footer>
+    </div>
+  </body>
+</html>
