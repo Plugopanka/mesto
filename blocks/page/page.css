@@ -1,0 +1,29 @@
+.page {
+  /* сглаживание текста */
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+
+  /* масштаб текста */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+
+  /* читаемость */
+  text-rendering: optimizeLegibility;
+
+  font-family: "Inter", Helvetica, sans-serif;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 950px) {
+  .page {
+    max-width: 581px;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .page {
+    max-width: 100%;
+  }
+}
