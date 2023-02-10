@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css" />
-    <script src="./scripts/script.js" defer></script>
+    <script src="./scripts/index.js" defer></script>
     <title>Mesto</title>
   </head>
   <body class="root">
@@ -18,121 +18,160 @@
             class="header__logo"
           />
         </a>
-        <div class="header__line"></div>
       </header>
 
-      <section class="profile">
-        <div class="profile__container">
-          <img
-            src="./images/profile-selfie.jpg"
-            alt="Аватар владельца аккаунта."
-            class="profile__avatar"
-          />
-          <div class="profile__info">
-            <h1 class="profile__name"></h1>
-            <button
-              class="profile__edit-button"
-              aria-label="Редактировать профиль."
-            ></button>
-            <p class="profile__description"></p>
+      <main class="content">
+        <section class="profile">
+          <div class="profile__container">
+            <img
+              src="./images/profile-selfie.jpg"
+              alt="Аватар владельца аккаунта."
+              class="profile__avatar"
+            />
+            <div class="profile__info">
+              <h1 class="profile__name">Медвежонок Тедди</h1>
+              <button
+                class="profile__edit-button"
+                type="button"
+                aria-label="Редактировать профиль."
+              ></button>
+              <p class="profile__description">Искатель меда</p>
+            </div>
           </div>
-        </div>
-        <button
-          class="profile__add-button"
-          aria-label="Добавить публикацию."
-        ></button>
-      </section>
-
-      <section class="popup">
-        <div class="popup__overlay"></div>
-        <div class="popup__container">
-          <form class="popup__border">
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <input type="text" name="name" class="popup__input" id="input-name" />
-            <input type="text" name="description" class="popup__input" id="input-description" />
-            <button
-            type="submit"
-              class="popup__save-button"
-              aria-label="Сохранить изменения."
-            >
-              Сохранить
-            </button>
-          </form>
           <button
-            class="popup__exit-button"
-            aria-label="Выйти без изменений."
+            class="profile__add-button"
+            type="button"
+            aria-label="Добавить публикацию."
           ></button>
-        </div>
-      </section>
+        </section>
 
-      <section class="cards">
-        <div class="card">
-          <img
-            src="./images/card-arkhyz.jpg"
-            alt="Каменный храм в кавказских горах."
-            class="card__image"
-          />
-          <div class="card__container">
-            <p class="card__place">Архыз</p>
-            <button class="card__like" aria-label="Мне нравится."></button>
+        <section class="popup">
+          <div class="popup__container">
+            <form class="popup__border" name="popup-form">
+              <h2 class="popup__title">Редактировать профиль</h2>
+              <input
+                type="text"
+                name="name"
+                class="popup__input"
+                id="input-name"
+              />
+              <input
+                type="text"
+                name="description"
+                class="popup__input"
+                id="input-description"
+              />
+              <button
+                type="submit"
+                class="popup__save-button"
+                aria-label="Сохранить изменения."
+              >
+                Сохранить
+              </button>
+            </form>
+            <button
+              class="popup__exit-button"
+              type="button"
+              aria-label="Выйти без изменений."
+            ></button>
           </div>
-        </div>
-        <div class="card">
-          <img
-            src="./images/card-dmitrov.jpg"
-            alt="Дорога в Дмитров через деревни."
-            class="card__image"
-          />
-          <div class="card__container">
-            <p class="card__place">Дмитров</p>
-            <button class="card__like" aria-label="Мне нравится."></button>
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="./images/card-kazan.jpg"
-            alt="Архитектура казанских достопримечательностей."
-            class="card__image"
-          />
-          <div class="card__container">
-            <p class="card__place">Казань</p>
-            <button class="card__like" aria-label="Мне нравится."></button>
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="./images/card-kirovsk.jpg"
-            alt="Вид на Кировск с Большого Вудъявра."
-            class="card__image"
-          />
-          <div class="card__container">
-            <p class="card__place">Кировск</p>
-            <button class="card__like" aria-label="Мне нравится."></button>
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="./images/card-krasnoyarsk.jpg"
-            alt="Набережная вдоль Енисея."
-            class="card__image"
-          />
-          <div class="card__container">
-            <p class="card__place">Красноярск</p>
-            <button class="card__like" aria-label="Мне нравится."></button>
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="./images/card-petropavlovsk-kamchatskiy.jpg"
-            alt="Пейзаж города перед вулканом."
-            class="card__image"
-          />
-          <div class="card__container">
-            <p class="card__place">Петропавловск-Камчатский</p>
-            <button class="card__like" aria-label="Мне нравится."></button>
-          </div>
-        </div>
-      </section>
+        </section>
+
+        <section class="cards">
+          <ul class="cards__list">
+            <li class="card">
+              <img
+                src="./images/card-arkhyz.jpg"
+                alt="Каменный храм в кавказских горах."
+                class="card__image"
+              />
+              <div class="card__container">
+                <h2 class="card__place">Архыз</h2>
+                <button
+                  class="card__like"
+                  type="button"
+                  aria-label="Мне нравится."
+                ></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/card-dmitrov.jpg"
+                alt="Дорога в Дмитров через деревни."
+                class="card__image"
+              />
+              <div class="card__container">
+                <h2 class="card__place">Дмитров</h2>
+                <button
+                  class="card__like"
+                  type="button"
+                  aria-label="Мне нравится."
+                ></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/card-kazan.jpg"
+                alt="Архитектура казанских достопримечательностей."
+                class="card__image"
+              />
+              <div class="card__container">
+                <h2 class="card__place">Казань</h2>
+                <button
+                  class="card__like"
+                  type="button"
+                  aria-label="Мне нравится."
+                ></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/card-kirovsk.jpg"
+                alt="Вид на Кировск с Большого Вудъявра."
+                class="card__image"
+              />
+              <div class="card__container">
+                <h2 class="card__place">Кировск</h2>
+                <button
+                  class="card__like"
+                  type="button"
+                  aria-label="Мне нравится."
+                ></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/card-krasnoyarsk.jpg"
+                alt="Набережная вдоль Енисея."
+                class="card__image"
+              />
+              <div class="card__container">
+                <h2 class="card__place">Красноярск</h2>
+                <button
+                  class="card__like"
+                  type="button"
+                  aria-label="Мне нравится."
+                ></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/card-petropavlovsk-kamchatskiy.jpg"
+                alt="Пейзаж города перед вулканом."
+                class="card__image"
+              />
+              <div class="card__container">
+                <h2 class="card__place">Петропавловск-Камчатский</h2>
+                <button
+                  class="card__like"
+                  type="button"
+                  aria-label="Мне нравится."
+                ></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
 
       <footer class="footer">
         <p class="footer__text">© 2020 Mesto Russia</p>
