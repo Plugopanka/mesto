@@ -42,5 +42,48 @@ function handleFormSubmit(evt) {
 
   closePopup();
 }
+popupForm.addEventListener("submit", handleFormSubmit);
 
-saveButton.addEventListener("click", handleFormSubmit);
+// массив карточек
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const popupAdd = document.querySelector("#add-popup");
+const buttonClosePopupAdd = document.querySelector("#add-popup-exit-button");
+const buttonOpenPopupAdd = document.querySelector(".profile__add-button");
+
+// открытие попапа
+function openPopupAdd() {
+  popupAdd.classList.add("popup_opened");
+}
+buttonOpenPopupAdd.addEventListener("click", openPopupAdd);
+
+// закрытие попапа
+function closePopupAdd() {
+  popupAdd.classList.remove("popup_opened");
+}
+buttonClosePopupAdd.addEventListener("click", closePopupAdd);
