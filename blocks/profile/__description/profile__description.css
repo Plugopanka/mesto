@@ -1,5 +1,6 @@
 .profile__description {
   grid-area: description;
+  max-width: 450px;
   margin: 0;
   font-style: normal;
   font-weight: 400;
@@ -14,6 +15,7 @@
 @media screen and (max-width: 950px) {
   .profile__description {
     font-size: 16px;
+    max-width: 250px;
   }
 }
 

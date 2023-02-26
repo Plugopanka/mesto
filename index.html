@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css" />
-    <script src="./scripts/script.js" defer></script>
+    <script src="./scripts/index.js" defer></script>
     <title>Mesto</title>
   </head>
   <body class="root">
@@ -18,52 +18,32 @@
             class="header__logo"
           />
         </a>
-        <div class="header__line"></div>
       </header>
 
-      <section class="profile">
-        <div class="profile__container">
-          <img
-            src="./images/profile-selfie.jpg"
-            alt="Аватар владельца аккаунта."
-            class="profile__avatar"
-          />
-          <div class="profile__info">
-            <h1 class="profile__name"></h1>
-            <button
-              class="profile__edit-button"
-              aria-label="Редактировать профиль."
-            ></button>
-            <p class="profile__description"></p>
+      <main class="content">
+        <section class="profile">
+          <div class="profile__container">
+            <img
+              src="./images/profile-selfie.jpg"
+              alt="Аватар владельца аккаунта."
+              class="profile__avatar"
+            />
+            <div class="profile__info">
+              <h1 class="profile__name">Медвежонок Тедди</h1>
+              <button
+                class="profile__edit-button"
+                type="button"
+                aria-label="Редактировать профиль."
+              ></button>
+              <p class="profile__description">Искатель меда</p>
+            </div>
           </div>
-        </div>
-        <button
-          class="profile__add-button"
-          aria-label="Добавить публикацию."
-        ></button>
-      </section>
-
-      <section class="popup">
-        <div class="popup__overlay"></div>
-        <div class="popup__container">
-          <form class="popup__border">
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <input type="text" name="name" class="popup__input" id="input-name" />
-            <input type="text" name="description" class="popup__input" id="input-description" />
-            <button
-            type="submit"
-              class="popup__save-button"
-              aria-label="Сохранить изменения."
-            >
-              Сохранить
-            </button>
-          </form>
           <button
-            class="popup__exit-button"
-            aria-label="Выйти без изменений."
+            class="profile__add-button"
+            type="button"
+            aria-label="Добавить публикацию."
           ></button>
-        </div>
-      </section>
+        </section>
 
         <section class="cards">
           <ul class="cards__list">
@@ -187,41 +167,6 @@
           </form>
           <button
             class="popup__exit-button"
-            type="button"
-            aria-label="Выйти без изменений."
-          ></button>
-        </div>
-      </section>
-
-      <section class="popup" id="add-popup">
-        <div class="popup__container">
-          <form class="popup__border" name="popup-form">
-            <h2 class="popup__title">Новое место</h2>
-            <input
-              type="text"
-              name="place"
-              class="popup__input"
-              id="input-place"
-              placeholder="Название"
-            />
-            <input
-              type="text"
-              name="link"
-              class="popup__input"
-              id="input-link"
-              placeholder="Ссылка на картинку"
-            />
-            <button
-              type="submit"
-              class="popup__save-button"
-              aria-label="Сохранить изменения."
-            >
-            Создать
-            </button>
-          </form>
-          <button
-            class="popup__exit-button"
-            id="add-popup-exit-button"
             type="button"
             aria-label="Выйти без изменений."
           ></button>
