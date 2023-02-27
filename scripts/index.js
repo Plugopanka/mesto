@@ -45,7 +45,6 @@ const buttonsLike = document.querySelectorAll(".card__like");
 const buttonsDelete = document.querySelectorAll(".card__delete");
 const buttonsView = document.querySelectorAll(".card__view");
 
-
 // определяем информацию профиля
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -65,17 +64,23 @@ const imagePopupView = popupView.querySelector(".popup__image");
 const subtitlePopupView = popupView.querySelector(".popup__subtitle");
 
 
-
+// добавление атрибутов в попап просмотра (работает некорректно)
 function openPopupView() {
+cardPlace.forEach(function (item) {
+  subtitlePopupView.textContent = item.textContent;
+})
 
-  subtitlePopupView.textContent = cardPlace.textContent;
-  imagePopupView.src = cardImage.src;
+cardImage.forEach(function (item) {
+  imagePopupView.src = item.src;
+  imagePopupView.alt = item.alt;
+
+  openPopup(popupView);
+})
 }
 
 buttonsView.forEach(function (item) {
-  item.addEventListener("click", openPopupView);
-});
-
+  item.addEventListener("click", openPopupView)});
+  
 // открытие попапа
 function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -119,13 +124,6 @@ function submitEditCard(evt) {
 }
 popupEditForm.addEventListener("submit", submitEditCard);
 
-// добавление атрибутов в попап просмотра
-function viewCard(evt) {
-  const image = evt.target;
-  const card = image.closest(".card");
-  image.firstElementChild.getAttribute("src")
-}
-
 // создание карточки из массива
 const cardContainer = document.querySelector(".cards__list");
 
@@ -142,10 +140,12 @@ function createCard(card) {
   //  поставить лайк на карточки из массива
   const buttonLike = arrayCard.querySelector(".card__like");
   buttonLike.addEventListener("click", getLike);
-  // открыть карточку из массива
+  // открыть попап карточки из массива
   const buttonView = arrayCard.querySelector(".card__view");
-  subtitlePopupView.textContent = cardHeading.textContent;
-  buttonView.addEventListener("click", function () {
+  buttonView.addEventListener("click", function (evt) {
+    imagePopupView.src = card.link;
+    imagePopupView.alt = `Картинка ${card.name}`;
+    subtitlePopupView.textContent = card.name;
     openPopup(popupView);
   });
 

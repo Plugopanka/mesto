@@ -1,0 +1,7 @@
+.popup__container_background_transparent {
+  max-width: 75vw;
+  max-height: 100vh;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
