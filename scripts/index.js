@@ -75,7 +75,6 @@ function closePopup(popup) {
 }
 
 const closeButtons = document.querySelectorAll('.popup__exit-button');
-console.log(closeButtons)
 closeButtons.forEach((button) => {
   // находим 1 раз ближайший к крестику попап 
   const popup = button.closest('.popup');
@@ -154,3 +153,24 @@ function toggleLike(evt) {
   const like = evt.target;
   like.classList.toggle("card__like_active");
 }
+
+// закрыть попап через область
+const popup = document.querySelectorAll('.popup');
+popup.forEach( (popup) => {
+popup.addEventListener('click', function (evt) {
+if (evt.target.classList.contains('popup')) {
+closePopup(popup)
+}
+});
+})
+
+// закрыть попап через esc
+const input = document.querySelectorAll('.popup__input');
+input.forEach( (input) => {
+  input.addEventListener('keydown', function (evt) {
+    const popup = input.closest('.popup');
+    if (evt.key === 'Escape') {
+  closePopup(popup)
+    }
+  })
+})
