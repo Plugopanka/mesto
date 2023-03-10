@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css" />
+    <script src="./scripts/validate.js" defer></script>
     <script src="./scripts/index.js" defer></script>
     <title>Mesto</title>
   </head>
@@ -79,20 +80,28 @@
 
       <section class="popup popup_function_edit">
         <div class="popup__container">
-          <form class="popup__border" name="edit-form">
+          <form class="popup__border" name="edit-form" novalidate>
             <h2 class="popup__title">Редактировать профиль</h2>
             <input
               type="text"
               name="name"
               class="popup__input"
               id="input-name"
+              required
+              minlength="2"
+              maxlength="40"
             />
+            <span class="class popup__input-error" id="name-error"></span>
             <input
               type="text"
               name="description"
               class="popup__input"
               id="input-description"
+              required
+              minlength="2"
+              maxlength="200"
             />
+            <span class="class popup__input-error" id="description-error"></span>
             <button
               type="submit"
               class="popup__save-button"
@@ -111,7 +120,7 @@
 
       <section class="popup popup_function_add">
         <div class="popup__container">
-          <form class="popup__border" name="add-form">
+          <form class="popup__border" name="add-form" novalidate>
             <h2 class="popup__title">Новое место</h2>
             <input
               type="text"
@@ -119,14 +128,20 @@
               class="popup__input"
               id="input-place"
               placeholder="Название"
+              required
+              minlength="2"
+              maxlength="30"
             />
+            <span class="class popup__input-error" id="place-error"></span>
             <input
-              type="text"
+              type="url"
               name="link"
               class="popup__input"
               id="input-link"
               placeholder="Ссылка на картинку"
+              required
             />
+            <span class="class popup__input-error" id="link-error"></span>
             <button
               type="submit"
               class="popup__save-button"
