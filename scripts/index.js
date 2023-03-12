@@ -1,30 +1,4 @@
-// массив карточек
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+
 
 // попапы
 const popupEdit = document.querySelector(".popup_function_edit");
@@ -57,12 +31,13 @@ const subtitlePopupView = popupView.querySelector(".popup__subtitle");
 // открытие попапа
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener('keydown', escapePopup);
 }
 
 buttonEdit.addEventListener("click", function () {
   // добавление текста в инпут
-inputName.value = profileName.textContent;
-inputDescription.value = profileDescription.textContent;
+  inputName.value = profileName.textContent;
+  inputDescription.value = profileDescription.textContent;
   openPopup(popupEdit);
 });
 buttonAdd.addEventListener("click", function () {
@@ -72,6 +47,7 @@ buttonAdd.addEventListener("click", function () {
 // закрытие попапа
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener('keydown', escapePopup);
 }
 
 const closeButtons = document.querySelectorAll('.popup__exit-button');
@@ -117,26 +93,29 @@ function getCard(card) {
     subtitlePopupView.textContent = card.name;
     openPopup(popupView);
   });
-return cardElement
+  return cardElement;
 }
 
-function createCard(card) {
+function renderCard(card) {
   const arrayCard = getCard(card);
   cardContainer.prepend(arrayCard);
 }
 
-initialCards.forEach(createCard);
+initialCards.forEach(renderCard);
 
 // добавление карточки
 function submitAddCard(evt) {
   evt.preventDefault();
   const form = evt.target;
+  const buttonElement = form.querySelector(validationConfig.submitButtonSelector);
   const link = form.querySelector("#input-link").value;
   const name = form.querySelector("#input-place").value;
   const card = { link, name };
-  createCard(card);
+  renderCard(card);
   closePopup(popupAdd);
   form.reset();
+  disableButton(buttonElement);
+  inactivateButtonView(buttonElement, validationConfig);
 }
 
 popupAddForm.addEventListener("submit", submitAddCard);
@@ -155,22 +134,21 @@ function toggleLike(evt) {
 }
 
 // закрыть попап через область
-const popup = document.querySelectorAll('.popup');
-popup.forEach( (popup) => {
-popup.addEventListener('click', function (evt) {
-if (evt.target.classList.contains('popup')) {
-closePopup(popup)
-}
-});
+const popups = document.querySelectorAll('.popup');
+popups.forEach( (popup) => {
+  popup.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(popup)
+    }
+  });
 })
 
 // закрыть попап через esc
-const input = document.querySelectorAll('.popup__input');
-input.forEach( (input) => {
-  input.addEventListener('keydown', function (evt) {
-    const popup = input.closest('.popup');
+const escapePopup = (evt) => {
+  popups.forEach( (popup) => {
     if (evt.key === 'Escape') {
-  closePopup(popup)
+      closePopup(popup);
     }
   })
-})
+}
+// добление и удаление слушателя лежит в функциях открытия и закрытия попапов
