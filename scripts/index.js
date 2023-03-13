@@ -114,8 +114,7 @@ function submitAddCard(evt) {
   renderCard(card);
   closePopup(popupAdd);
   form.reset();
-  disableButton(buttonElement);
-  inactivateButtonView(buttonElement, validationConfig);
+  disableButton(buttonElement, validationConfig);
 }
 
 popupAddForm.addEventListener("submit", submitAddCard);
@@ -145,10 +144,8 @@ popups.forEach( (popup) => {
 
 // закрыть попап через esc
 const escapePopup = (evt) => {
-  popups.forEach( (popup) => {
-    if (evt.key === 'Escape') {
-      closePopup(popup);
-    }
-  })
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
 }
 // добление и удаление слушателя лежит в функциях открытия и закрытия попапов

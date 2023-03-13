@@ -2,14 +2,12 @@ const showInputError = (errorElement, inputElement, errorMessage, buttonElement,
   inputElement.classList.add(validationConfig.inputErrorClass);
   errorElement.classList.add(validationConfig.errorClass);
   errorElement.textContent = errorMessage;
-  buttonElement.classList.add(validationConfig.submitButtonErrorClass);
 }
 
 const hideInputError = (errorElement, inputElement, buttonElement, validationConfig) => {
   inputElement.classList.remove(validationConfig.inputErrorClass);
   errorElement.classList.remove(validationConfig.errorClass);
   errorElement.textContent = '';
-  buttonElement.classList.remove(validationConfig.submitButtonErrorClass);
 }
 
 const isValid = (formElement, inputElement, buttonElement, validationConfig) => {
@@ -27,30 +25,22 @@ const hasInvalidInput = (inputList) => {
   })
 }
 
-const inactivateButtonView = (buttonElement, validationConfig) => {
+const disableButton = (buttonElement, validationConfig) => {
+  buttonElement.setAttribute('disabled', 'true');
   buttonElement.classList.add(validationConfig.inactiveButtonClass);
 }
 
-const activateButtonView = (buttonElement, validationConfig) => {
-  buttonElement.classList.remove(validationConfig.inactiveButtonClass);
-}
-
-const disableButton = (buttonElement) => {
-  buttonElement.setAttribute('disabled', 'true');
-}
-
-const ableButton = (buttonElement) => {
+const enableButton = (buttonElement, validationConfig) => {
   buttonElement.removeAttribute('disabled');
+  buttonElement.classList.remove(validationConfig.inactiveButtonClass);
 }
 
 const toggleButtonState = (inputList, buttonElement, validationConfig) => {
   if (hasInvalidInput(inputList)) {
-    inactivateButtonView(buttonElement, validationConfig);
-    disableButton(buttonElement);
+    disableButton(buttonElement, validationConfig);
   }
   else {
-    activateButtonView(buttonElement, validationConfig);
-    ableButton(buttonElement);
+    enableButton(buttonElement, validationConfig);
   }
 }
 
