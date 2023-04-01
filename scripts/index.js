@@ -6,7 +6,7 @@ import FormValidator from './FormValidator.js';
 const cardContainer = document.querySelector(".cards__list");
 
 function renderCard(data) {
-  const card = new Card(data, '.card-template');
+  const card = new Card(data, '.card-template', createPopupView);
   const arrayCard = card.getCard();
   cardContainer.prepend(arrayCard);
 }
@@ -90,6 +90,14 @@ function submitEditCard(evt) {
   closePopup(popupEdit);
 }
 popupEditForm.addEventListener("submit", submitEditCard);
+
+// создание попапа предпросмотра
+function createPopupView(name, link) {
+  imagePopupView.src = link;
+  imagePopupView.alt = `Картинка ${name}`;
+  subtitlePopupView.textContent = name;
+  openPopup(popupView);
+}
 
 // добавление карточки
 function submitAddCard(evt) {

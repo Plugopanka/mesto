@@ -1,8 +1,9 @@
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, createPopupView) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._createPopupView = createPopupView;
   }
 
   _getTemplate() {
@@ -32,14 +33,6 @@ export default class Card {
     like.classList.toggle("card__like_active");
   }
 
-  // ???
-  _createPopupView() {
-    imagePopupView.src = this._link;
-    imagePopupView.alt = `Картинка ${this._name}`;
-    subtitlePopupView.textContent = this._name;
-    openPopup(popupView);
-  }
-
   _setEventListeners() {
     const buttonDelete = this._element.querySelector(".card__delete");
     buttonDelete.addEventListener("click", this._deleteCard);
@@ -48,7 +41,7 @@ export default class Card {
     buttonLike.addEventListener("click", this._toggleLike);
 
     const buttonView = this._element.querySelector(".card__view");
-    buttonView.addEventListener("click", this._createPopupView);
+    buttonView.addEventListener("click", () => {this._createPopupView(this._name, this._link)});
   }
   
 }
