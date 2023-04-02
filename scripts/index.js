@@ -8,20 +8,29 @@ const cardContainer = document.querySelector(".cards__list");
 function renderCard(data) {
   const card = new Card(data, '.card-template', createPopupView);
   const arrayCard = card.getCard();
-  cardContainer.prepend(arrayCard);
+  return arrayCard;
+}
+
+function createCard(data) {
+  cardContainer.prepend(renderCard(data));
 }
 
 initialCards.forEach((item) => {
-  renderCard(item);
+  createCard(item);
 });
 
 ///////////////////////////////////////////////////////////////////
 
 
-// подключаем валидацию
-const validator = new FormValidator(validationConfig);
-validator.enableValidation();
+// формы попапов
+const popupEditForm = document.forms["edit-form"];
+const popupAddForm = document.forms["add-form"];
 
+// подключаем валидацию
+const validatorEdit = new FormValidator(validationConfig, popupEditForm);
+validatorEdit.enableValidation();
+const validatorAdd = new FormValidator(validationConfig, popupAddForm);
+validatorAdd.enableValidation();
 
 //////////////////////////////////////////////////////////////////
 
@@ -29,10 +38,6 @@ validator.enableValidation();
 const popupEdit = document.querySelector(".popup_function_edit");
 const popupAdd = document.querySelector(".popup_function_add");
 const popupView = document.querySelector(".popup_function_view");
-
-// кнопки попапов
-const popupEditForm = document.forms["edit-form"];
-const popupAddForm = document.forms["add-form"];
 
 // кнопки страницы
 const buttonEdit = document.querySelector(".profile__edit-button");
@@ -45,6 +50,8 @@ const profileDescription = document.querySelector(".profile__description");
 // определяем поля инпута
 const inputName = document.querySelector("#input-name");
 const inputDescription = document.querySelector("#input-description");
+const inputPlace = document.querySelector("#input-place");
+const inputLink = document.querySelector("#input-link");
 
 // определение атирбутов в попап просмотра
 const imagePopupView = popupView.querySelector(".popup__image");
@@ -103,14 +110,13 @@ function createPopupView(name, link) {
 function submitAddCard(evt) {
   evt.preventDefault();
   const form = evt.target;
-  const buttonElement = form.querySelector(validationConfig.submitButtonSelector);
-  const link = form.querySelector("#input-link").value;
-  const name = form.querySelector("#input-place").value;
+  const link = inputLink.value;
+  const name = inputPlace.value;
   const card = { link, name };
-  renderCard(card);
+  createCard(card);
   closePopup(popupAdd);
   form.reset();
-  validator._disableButton(buttonElement);
+  validatorAdd.disableButton();
 }
 
 popupAddForm.addEventListener("submit", submitAddCard);

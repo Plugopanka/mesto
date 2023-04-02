@@ -4,6 +4,10 @@ export default class Card {
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._createPopupView = createPopupView;
+    this._element = this._getTemplate();
+    this._buttonDelete = this._element.querySelector(".card__delete");
+    this._buttonLike = this._element.querySelector(".card__like");
+    this._buttonView = this._element.querySelector(".card__view");
   }
 
   _getTemplate() {
@@ -12,7 +16,6 @@ export default class Card {
   }
 
   getCard() {
-    this._element = this._getTemplate();
     this._setEventListeners();
     const cardHeading = this._element.querySelector(".card__place");
     cardHeading.textContent = this._name;
@@ -34,14 +37,11 @@ export default class Card {
   }
 
   _setEventListeners() {
-    const buttonDelete = this._element.querySelector(".card__delete");
-    buttonDelete.addEventListener("click", this._deleteCard);
+    this._buttonDelete.addEventListener("click", this._deleteCard);
 
-    const buttonLike = this._element.querySelector(".card__like");
-    buttonLike.addEventListener("click", this._toggleLike);
+    this._buttonLike.addEventListener("click", this._toggleLike);
 
-    const buttonView = this._element.querySelector(".card__view");
-    buttonView.addEventListener("click", () => {this._createPopupView(this._name, this._link)});
+    this._buttonView.addEventListener("click", () => {this._createPopupView(this._name, this._link)});
   }
   
 }
