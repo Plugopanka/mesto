@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(data, templateSelector, createPopupView) {
+  constructor({data, createPopupView}, templateSelector) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
