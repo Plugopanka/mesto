@@ -27,12 +27,12 @@ const initialCards = [
 ];
 
 const validationConfig = {
-  formSelector: '.popup__border',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_visible'
+  formSelector: ".popup__border",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_visible",
 };
 
 // формы попапов
@@ -40,9 +40,9 @@ const popupEditForm = document.forms["edit-form"];
 const popupAddForm = document.forms["add-form"];
 
 // попапы
-const popupEdit = document.querySelector(".popup_function_edit");
-const popupAdd = document.querySelector(".popup_function_add");
-const popupView = document.querySelector(".popup_function_view");
+const popupEditSelector = document.querySelector(".popup_function_edit");
+const popupAddSelector = document.querySelector(".popup_function_add");
+const popupViewSelector = document.querySelector(".popup_function_view");
 
 // определяем информацию профиля
 const profileName = document.querySelector(".profile__name");
@@ -55,9 +55,19 @@ const buttonAdd = document.querySelector(".profile__add-button");
 // определяем поля инпута
 const inputName = document.querySelector("#input-name");
 const inputDescription = document.querySelector("#input-description");
-const inputPlace = document.querySelector("#input-place");
-const inputLink = document.querySelector("#input-link");
 
-export {initialCards, validationConfig, popupEditForm, popupAddForm, popupEdit, 
-  popupAdd, popupView, profileName, profileDescription, buttonEdit, buttonAdd,
-  inputName, inputDescription, inputPlace, inputLink} 
+export {
+  initialCards,
+  validationConfig,
+  popupEditForm,
+  popupAddForm,
+  popupEditSelector,
+  popupAddSelector,
+  popupViewSelector,
+  profileName,
+  profileDescription,
+  buttonEdit,
+  buttonAdd,
+  inputName,
+  inputDescription
+};

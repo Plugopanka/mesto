@@ -1,7 +1,7 @@
 export default class userInfo {
-  constructor({name, description}) {
-this._name = name;
-this._description = description;
+  constructor({ name, description }) {
+    this._name = name;
+    this._description = description;
   }
 
   getUserInfo() {

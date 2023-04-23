@@ -1,7 +1,19 @@
 import "./index.css";
-import {initialCards, validationConfig, popupEditForm, popupAddForm, popupEdit, 
-  popupAdd, popupView, profileName, profileDescription, buttonEdit, buttonAdd,
-  inputName, inputDescription, inputPlace, inputLink} from "../components/constants.js";
+import {
+  initialCards,
+  validationConfig,
+  popupEditForm,
+  popupAddForm,
+  popupEditSelector,
+  popupAddSelector,
+  popupViewSelector,
+  profileName,
+  profileDescription,
+  buttonEdit,
+  buttonAdd,
+  inputName,
+  inputDescription
+} from "../utils/constants.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
@@ -13,21 +25,21 @@ import UserInfo from "../components/UserInfo.js";
 
 const userInfo = new UserInfo({
   name: profileName,
-  description: profileDescription,
+  description: profileDescription
 });
 
 const renderCard = (data) => {
   const card = new Card(
     {
       data,
-      createPopupView: () => {
+      handleImageClick: () => {
         popupWithImage.open(data);
       },
     },
     ".card-template"
   );
-  const arrayCard = card.getCard();
-  return arrayCard;
+  const newCard = card.getCard();
+  return newCard;
 };
 
 const cardSection = new Section(
@@ -41,63 +53,42 @@ const cardSection = new Section(
   ".cards__list"
 );
 
-cardSection.renderCard();
+cardSection.renderItems();
 
-// добавление карточки
-function submitAddCard(evt) {
-  evt.preventDefault();
-  const form = evt.target;
-  const newCard = {};
-  newCard.link = inputLink.value;
-  newCard.name = inputPlace.value;
-  const newCardSection = new Section(
-    {
-      items: newCard,
-      renderer: (item) => {
-        const card = renderCard(item);
-        newCardSection.addItem(card);
-      },
-    },
-    ".cards__list"
-  );
-  newCardSection.renderNewCard(newCard);
-  newPopupAdd.close();
-  form.reset();
-  validatorAdd.disableButton();
-}
 
-popupAddForm.addEventListener("submit", submitAddCard);
-
-const newPopupEdit = new PopupWithForm({
-  popupSelector: popupEdit,
+const popupEdit = new PopupWithForm({
+  popup: popupEditSelector,
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data);
   },
 });
 
-const newPopupAdd = new PopupWithForm({
-  popupSelector: popupAdd,
+const popupAdd = new PopupWithForm({
+  popup: popupAddSelector,
   handleFormSubmit: (data) => {
     const card = renderCard(data);
     cardSection.addItem(card);
   },
 });
 
-const popupWithImage = new PopupWithImage(popupView);
+const popupWithImage = new PopupWithImage(popupViewSelector);
 
-newPopupEdit.setEventListeners();
-newPopupAdd.setEventListeners();
+
+popupEdit.setEventListeners();
+popupEdit.setSubmitEventListener();
+popupAdd.setEventListeners();
+popupAdd.setSubmitEventListener();
 popupWithImage.setEventListeners();
 
 buttonEdit.addEventListener("click", function () {
   const newUserInfo = userInfo.getUserInfo();
   inputName.value = newUserInfo.name;
   inputDescription.value = newUserInfo.description;
-  newPopupEdit.open();
+  popupEdit.open();
 });
 
 buttonAdd.addEventListener("click", function () {
-  newPopupAdd.open();
+  popupAdd.open();
 });
 
 ///////////////////////////////////////////////////////////////////
