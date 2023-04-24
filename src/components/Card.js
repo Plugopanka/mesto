@@ -1,6 +1,6 @@
 export default class Card {
   constructor({ data, handleImageClick }, templateSelector) {
-    this._name = data.place;
+    this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleImageClick = handleImageClick;
@@ -27,15 +27,12 @@ export default class Card {
     return this._element;
   }
 
-  _deleteCard(evt) {
-    this._buttonDelete = evt.target;
-    const card = this._buttonDelete.closest(".card");
-    card.remove();
-
+  _deleteCard() {
+    this._element.remove();
+    this._element = null;
   }
 
-  _toggleLike(evt) {
-    this._buttonLike = evt.target;
+  _toggleLike() {
     this._buttonLike.classList.toggle("card__like_active");
   }
 

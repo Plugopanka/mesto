@@ -4,9 +4,9 @@ import {
   validationConfig,
   popupEditForm,
   popupAddForm,
-  popupEditSelector,
-  popupAddSelector,
-  popupViewSelector,
+  popupEdit,
+  popupAdd,
+  popupView,
   profileName,
   profileDescription,
   buttonEdit,
@@ -22,6 +22,14 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
 ///////////////////////////////////////////////////////////////////
+
+// подключаем валидацию
+const validatorEdit = new FormValidator(validationConfig, popupEditForm);
+validatorEdit.enableValidation();
+const validatorAdd = new FormValidator(validationConfig, popupAddForm);
+validatorAdd.enableValidation();
+
+//////////////////////////////////////////////////////////////////
 
 const userInfo = new UserInfo({
   name: profileName,
@@ -56,47 +64,41 @@ const cardSection = new Section(
 cardSection.renderItems();
 
 
-const popupEdit = new PopupWithForm({
-  popup: popupEditSelector,
+const popupWithEditForm = new PopupWithForm({
+  popup: popupEdit,
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data);
+    popupWithEditForm.close();
+    validatorEdit.enableValidation();
   },
 });
 
-const popupAdd = new PopupWithForm({
-  popup: popupAddSelector,
+const popupWithAddForm = new PopupWithForm({
+  popup: popupAdd,
   handleFormSubmit: (data) => {
     const card = renderCard(data);
     cardSection.addItem(card);
+    popupWithAddForm.close();
+    validatorAdd.enableValidation();
   },
 });
 
-const popupWithImage = new PopupWithImage(popupViewSelector);
+const popupWithImage = new PopupWithImage(popupView);
 
 
-popupEdit.setEventListeners();
-popupEdit.setSubmitEventListener();
-popupAdd.setEventListeners();
-popupAdd.setSubmitEventListener();
+popupWithEditForm.setEventListeners();
+popupWithAddForm.setEventListeners();
 popupWithImage.setEventListeners();
 
 buttonEdit.addEventListener("click", function () {
   const newUserInfo = userInfo.getUserInfo();
   inputName.value = newUserInfo.name;
   inputDescription.value = newUserInfo.description;
-  popupEdit.open();
+  popupWithEditForm.open();
 });
 
 buttonAdd.addEventListener("click", function () {
-  popupAdd.open();
+  popupWithAddForm.open();
 });
 
 ///////////////////////////////////////////////////////////////////
-
-// подключаем валидацию
-const validatorEdit = new FormValidator(validationConfig, popupEditForm);
-validatorEdit.enableValidation();
-const validatorAdd = new FormValidator(validationConfig, popupAddForm);
-validatorAdd.enableValidation();
-
-//////////////////////////////////////////////////////////////////

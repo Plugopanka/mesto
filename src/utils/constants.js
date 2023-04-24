@@ -40,9 +40,9 @@ const popupEditForm = document.forms["edit-form"];
 const popupAddForm = document.forms["add-form"];
 
 // попапы
-const popupEditSelector = document.querySelector(".popup_function_edit");
-const popupAddSelector = document.querySelector(".popup_function_add");
-const popupViewSelector = document.querySelector(".popup_function_view");
+const popupEdit = document.querySelector(".popup_function_edit");
+const popupAdd = document.querySelector(".popup_function_add");
+const popupView = document.querySelector(".popup_function_view");
 
 // определяем информацию профиля
 const profileName = document.querySelector(".profile__name");
@@ -61,9 +61,9 @@ export {
   validationConfig,
   popupEditForm,
   popupAddForm,
-  popupEditSelector,
-  popupAddSelector,
-  popupViewSelector,
+  popupEdit,
+  popupAdd,
+  popupView,
   profileName,
   profileDescription,
   buttonEdit,
