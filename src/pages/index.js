@@ -69,7 +69,7 @@ const popupWithEditForm = new PopupWithForm({
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data);
     popupWithEditForm.close();
-    validatorEdit.enableValidation();
+    validatorEdit.disableButton();
   },
 });
 
@@ -79,7 +79,7 @@ const popupWithAddForm = new PopupWithForm({
     const card = renderCard(data);
     cardSection.addItem(card);
     popupWithAddForm.close();
-    validatorAdd.enableValidation();
+    validatorAdd.disableButton();
   },
 });
 

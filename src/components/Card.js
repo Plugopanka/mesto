@@ -37,6 +37,7 @@ export default class Card {
   }
 
   _setEventListeners() {
+    
     this._buttonDelete.addEventListener("click", this._deleteCard);
 
     this._buttonLike.addEventListener("click", this._toggleLike);
