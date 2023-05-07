@@ -38,19 +38,24 @@ const validationConfig = {
 // формы попапов
 const popupEditForm = document.forms["edit-form"];
 const popupAddForm = document.forms["add-form"];
+const popupChangeForm = document.forms["change-form"];
 
 // попапы
 const popupEdit = document.querySelector(".popup_function_edit");
 const popupAdd = document.querySelector(".popup_function_add");
+const popupChange = document.querySelector(".popup_function_change");
+const popupSubmit = document.querySelector(".popup_function_submit");
 const popupView = document.querySelector(".popup_function_view");
 
 // определяем информацию профиля
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
+const profileAvatar = document.querySelector(".profile__avatar");
 
 // кнопки страницы
 const buttonEdit = document.querySelector(".profile__edit-button");
 const buttonAdd = document.querySelector(".profile__add-button");
+const buttonChange = document.querySelector(".profile__avatar-button");
 
 // определяем поля инпута
 const inputName = document.querySelector("#input-name");
@@ -61,13 +66,18 @@ export {
   validationConfig,
   popupEditForm,
   popupAddForm,
+  popupChangeForm,
   popupEdit,
   popupAdd,
   popupView,
+  popupChange,
+  popupSubmit,
   profileName,
   profileDescription,
+  profileAvatar,
   buttonEdit,
   buttonAdd,
+  buttonChange,
   inputName,
   inputDescription
 };

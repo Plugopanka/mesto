@@ -1,6 +1,5 @@
 .popup__border {
 max-width: 358px;
-min-height: 259px;
 margin: 34px 36px 36px;
 }
 
@@ -8,6 +7,5 @@ margin: 34px 36px 36px;
   .popup__border {
     max-width: 238px;
     margin: 25px 22px;
-    min-height: 272px;
   }
 }
