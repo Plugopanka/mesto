@@ -133,12 +133,12 @@ const popupWithAddForm = new PopupWithForm({
   popup: popupAdd,
   handleFormSubmit: (data) => {
     popupWithEditForm.renderLoading(true);
-    api
-      .postNewCard(data.name, data.link)
-      .then((res) => {
-        const card = renderCard(res.name, res.link);
-        cardSection.addItem(card);
-      })
+    Promise.all([api.postNewCard(data.name, data.link), api.getUserData()])
+  .then(([postData, userData]) => {
+    const userId = userData._id;
+    const card = renderCard(postData, userId);
+    cardSection.addItem(card);
+  })
       .catch((err) => console.log(`Ошибка загрузки ${err}`))
       .finally(() => popupWithAddForm.renderLoading(false));
 
