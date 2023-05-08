@@ -134,11 +134,11 @@ const popupWithAddForm = new PopupWithForm({
   handleFormSubmit: (data) => {
     popupWithEditForm.renderLoading(true);
     Promise.all([api.postNewCard(data.name, data.link), api.getUserData()])
-  .then(([postData, userData]) => {
-    const userId = userData._id;
-    const card = renderCard(postData, userId);
-    cardSection.addItem(card);
-  })
+      .then(([postData, userData]) => {
+        const userId = userData._id;
+        const card = renderCard(postData, userId);
+        cardSection.addItem(card);
+      })
       .catch((err) => console.log(`Ошибка загрузки ${err}`))
       .finally(() => popupWithAddForm.renderLoading(false));
 
@@ -168,23 +168,24 @@ const popupWithChangeForm = new PopupWithForm({
 
 popupWithChangeForm.renderLoading(false);
 
+const popupWithSubmitForm = new PopupWithConfirm({
+  popup: popupSubmit,
+});
+
 function handleCardDelete(data) {
   const handleFormSubmit = () => {
     popupWithSubmitForm.renderLoading(true);
-    api.deleteNewCard(data.cardId).then((res) => {
-      res
+    api.deleteNewCard(data.cardId).then(() => {
+      data
         .deleteCard()
         .catch((err) => console.log(`Ошибка загрузки ${err}`))
         .finally(() => popupWithSubmitForm.renderLoading(false));
     });
+    
   };
   popupWithSubmitForm.setSubmitAction(handleFormSubmit);
   popupWithSubmitForm.close();
 }
-
-const popupWithSubmitForm = new PopupWithConfirm({
-  popup: popupSubmit,
-});
 
 popupWithSubmitForm.renderLoading(false);
 
