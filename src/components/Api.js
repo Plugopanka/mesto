@@ -4,6 +4,13 @@ export default class Api {
     this._headers = headers;
   }
 
+  _returnPromiseStatus(res) {
+    if (!res.ok) {
+      return Promise.reject(`Ошибка ${res.status}`);
+    }
+    return res.json();
+  }
+
   getCards() {
     return fetch(`${this._url}/cards`, {
       headers: this._headers,

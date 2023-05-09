@@ -53,22 +53,34 @@ const renderCard = (data, userId) => {
         popupWithImage.open(data);
       },
       handleCardSubmit: (card) => {
-        handleCardDelete(card);
         popupWithSubmitForm.open();
+        popupWithSubmitForm.setSubmitAction(() => {
+          popupWithSubmitForm.renderLoading(true);
+          api
+            .deleteNewCard(card.cardId)
+            .then(() => {
+              card.deleteCard();
+              popupWithSubmitForm.close();
+            })
+            .catch((err) => console.log(`Ошибка загрузки ${err}`))
+            .finally(() => popupWithSubmitForm.renderLoading(false));
+        });
       },
       handleCardLike: (card) => {
         if (card.isLiked()) {
           api
             .deleteLike(card.cardId)
             .then((res) => {
-              card.removeLike(res);
+              card.removeLike()
+              card.countLikes(res)
             })
             .catch((err) => console.log(`Ошибка загрузки ${err}`));
         } else {
           api
             .putLike(card.cardId)
             .then((res) => {
-              card.addLike(res);
+              card.addLike()
+              card.countLikes(res)
             })
             .catch((err) => console.log(`Ошибка загрузки ${err}`));
         }
@@ -116,14 +128,12 @@ const popupWithEditForm = new PopupWithForm({
     api
       .patchUserInfo(data.name, data.about)
       .then((res) => {
-        const card = renderCard(res.name, res.about);
-        cardSection.addItem(card);
+        userInfo.setUserInfo(res);
+        popupWithEditForm.close();
+        validatorEdit.disableButton();
       })
       .catch((err) => console.log(`Ошибка загрузки ${err}`))
       .finally(() => popupWithEditForm.renderLoading(false));
-    userInfo.setUserInfo(data);
-    popupWithEditForm.close();
-    validatorEdit.disableButton();
   },
 });
 
@@ -138,12 +148,11 @@ const popupWithAddForm = new PopupWithForm({
         const userId = userData._id;
         const card = renderCard(postData, userId);
         cardSection.addItem(card);
+        popupWithAddForm.close();
+        validatorAdd.disableButton();
       })
       .catch((err) => console.log(`Ошибка загрузки ${err}`))
       .finally(() => popupWithAddForm.renderLoading(false));
-
-    popupWithAddForm.close();
-    validatorAdd.disableButton();
   },
 });
 
@@ -157,12 +166,11 @@ const popupWithChangeForm = new PopupWithForm({
       .patchUserAvatar(data.link)
       .then((res) => {
         userInfo.setUserAvatar(res.avatar);
+        popupWithChangeForm.close();
+        validatorChange.disableButton();
       })
       .catch((err) => console.log(`Ошибка загрузки ${err}`))
       .finally(() => popupWithChangeForm.renderLoading(false));
-
-    popupWithChangeForm.close();
-    validatorChange.disableButton();
   },
 });
 
@@ -171,21 +179,6 @@ popupWithChangeForm.renderLoading(false);
 const popupWithSubmitForm = new PopupWithConfirm({
   popup: popupSubmit,
 });
-
-function handleCardDelete(data) {
-  const handleFormSubmit = () => {
-    popupWithSubmitForm.renderLoading(true);
-    api.deleteNewCard(data.cardId).then(() => {
-      data
-        .deleteCard()
-        .catch((err) => console.log(`Ошибка загрузки ${err}`))
-        .finally(() => popupWithSubmitForm.renderLoading(false));
-    });
-    
-  };
-  popupWithSubmitForm.setSubmitAction(handleFormSubmit);
-  popupWithSubmitForm.close();
-}
 
 popupWithSubmitForm.renderLoading(false);
 

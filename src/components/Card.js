@@ -37,9 +37,13 @@ export default class Card {
     cardImage.src = this._link;
     cardImage.alt = `Картинка ${this._name}`;
     this._cardLikes.textContent = this._likes.length;
-    // console.log(this._ownerId, this._userId)
+
     if (this._ownerId != this._userId) {
       this._buttonDelete.classList.add("card__delete_hidden");
+    }
+
+    if(this.isLiked()) {
+      this.addLike()
     }
 
     this._setEventListeners();
@@ -51,14 +55,15 @@ export default class Card {
     this._element = null;
   }
 
-  addLike(res) {
+  addLike() {
     this._buttonLike.classList.add("card__like_active");
-    this._cardLikes.textContent = res.likes.length;
-    this._likes = res.likes;
   }
 
-  removeLike(res) {
+  removeLike() {
     this._buttonLike.classList.remove("card__like_active");
+  }
+
+  countLikes(res) {
     this._cardLikes.textContent = res.likes.length;
     this._likes = res.likes;
   }
