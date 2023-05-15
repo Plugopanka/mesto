@@ -15,10 +15,7 @@ export default class Api {
     return fetch(`${this._url}/cards`, {
       headers: this._headers,
     }).then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-      return res.json();
+      return this._returnPromiseStatus(res);
     });
   }
 
@@ -26,10 +23,7 @@ export default class Api {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers,
     }).then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-      return res.json();
+      return this._returnPromiseStatus(res);
     });
   }
 
@@ -37,10 +31,7 @@ export default class Api {
     return fetch(`${this._url}/cards/likes`, {
       headers: this._headers,
     }).then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-      return res.json();
+      return this._returnPromiseStatus(res);
     });
   }
 
@@ -49,10 +40,7 @@ export default class Api {
       method: "PUT",
       headers: this._headers,
     }).then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-      return res.json();
+      return this._returnPromiseStatus(res);
     });
   }
 
@@ -61,10 +49,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-      return res.json();
+      return this._returnPromiseStatus(res);
     });
   }
 
@@ -74,10 +59,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({ name, link }),
     }).then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-      return res.json();
+      return this._returnPromiseStatus(res);
     });
   }
 
@@ -86,10 +68,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-      return res.json();
+      return this._returnPromiseStatus(res);
     });
   }
 
@@ -99,10 +78,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({ name, about }),
     }).then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-      return res.json();
+      return this._returnPromiseStatus(res);
     });
   }
 
@@ -112,10 +88,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({ avatar }),
     }).then((res) => {
-      if (!res.ok) {
-        return Promise.reject(`Ошибка ${res.status}`);
-      }
-      return res.json();
+      return this._returnPromiseStatus(res);
     });
   }
 }
